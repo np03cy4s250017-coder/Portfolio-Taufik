@@ -1,11 +1,262 @@
 <!DOCTYPE html>
-<html lang="eng">
+<html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Portfolio</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>John Smith - Professional Portfolio</title>
+    <link rel="stylesheet" href="CSS/style.css">
 </head>
 <body>
+    <!-- Navigation -->
+    <nav class="navigation">
+        <div class="nav-container">
+            <a href="#header" class="logo">Portfolio</a>
+            <div class="nav-menu">
+                <a href="#header" class="nav-link">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+        </div>
+    </nav>
 
+    <!-- Header Section -->
+    <header id="header" class="header">
+        <div class="header-content">
+            <div class="avatar">MTR</div>
+            <h1 class="header-title">Hi, I'm MD Taufik Reza</h1>
+            <p class="header-description">
+                A dedicated cybersecurity student with a strong passion for protecting digital systems 
+                and solving real-world security challenges.I focus on building secure, reliable, and 
+                efficient solutions while continuously learning about emerging threats and defense strategies.
+                With a growing skill set in network security, ethical hacking, and secure application design, 
+                I strive to contribute to a safer digital environment through analytical thinking, attention to 
+                detail, and a commitment to best security practices.
+            </p>
+            <div class="header-buttons">
+                <a href="#projects" class="btn btn-primary">View My Work</a>
+                <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+            </div>
+            <a href="#about" class="scroll-arrow">↓</a>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">About Me</h2>
+                <p class="section-description">
+                    I'm a cybersecurity student with a growing expertise in safeguarding systems and data. 
+                    I love transforming complex security concepts into practical solutions and building 
+                    environments that users can trust.
+                </p>
+            </div>
+
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-icon">💻</div>
+                    <h3 class="skill-title">Development</h3>
+                    <p class="skill-description">
+                        Experienced in modern web technologies including React, TypeScript, Node.js, and more.
+                    </p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🎨</div>
+                    <h3 class="skill-title">Design</h3>
+                    <p class="skill-description">
+                        Strong eye for design with expertise in creating intuitive and beautiful user interfaces.
+                    </p>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">⚡</div>
+                    <h3 class="skill-title">Performance</h3>
+                    <p class="skill-description">
+                        Focused on building fast, optimized applications that deliver exceptional user experiences.
+                    </p>
+                </div>
+            </div>
+
+            <div class="technologies">
+                <h3 class="tech-title">Skills & Technologies</h3>
+                <div class="tech-tags">
+                    <span class="tech-tag">JavaScript</span>
+                    <span class="tech-tag">TypeScript</span>
+                    <span class="tech-tag">React</span>
+                    <span class="tech-tag">Node.js</span>
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">SQL</span>
+                    <span class="tech-tag">MongoDB</span>
+                    <span class="tech-tag">Git</span>
+                    <span class="tech-tag">AWS</span>
+                    <span class="tech-tag">Docker</span>
+                    <span class="tech-tag">Tailwind CSS</span>
+                    <span class="tech-tag">Next.js</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Featured Projects</h2>
+                <p class="section-description">
+                    Here are some of my recent projects that showcase my skills and experience
+                    in web development.
+                </p>
+            </div>
+
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1676792519027-7c42006d7b4a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjB3ZWIlMjBkZXZlbG9wbWVudHxlbnwxfHx8fDE3NjM3MDkwNjZ8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="E-Commerce Platform">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">E-Commerce Platform</h3>
+                        <p class="project-description">
+                            A full-featured e-commerce platform with payment integration, admin dashboard, and real-time inventory management.
+                        </p>
+                        <div class="project-tags">
+                            <span class="project-tag">React</span>
+                            <span class="project-tag">Node.js</span>
+                            <span class="project-tag">MongoDB</span>
+                            <span class="project-tag">Stripe</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link primary">🔗 Live Demo</a>
+                            <a href="#" class="project-link secondary">📁 Code</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1609921212029-bb5a28e60960?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2JpbGUlMjBhcHAlMjBkZXNpZ258ZW58MXx8fHwxNzYzNzcxNDg4fDA&ixlib=rb-4.1.0&q=80&w=1080" alt="Task Management App">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Task Management App</h3>
+                        <p class="project-description">
+                            A collaborative task management application with team features, real-time updates, and advanced filtering options.
+                        </p>
+                        <div class="project-tags">
+                            <span class="project-tag">TypeScript</span>
+                            <span class="project-tag">React</span>
+                            <span class="project-tag">Firebase</span>
+                            <span class="project-tag">Tailwind</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link primary">🔗 Live Demo</a>
+                            <a href="#" class="project-link secondary">📁 Code</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1748609160056-7b95f30041f0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkYXRhJTIwZGFzaGJvYXJkJTIwYW5hbHl0aWNzfGVufDF8fHx8MTc2Mzc5MjUyM3ww&ixlib=rb-4.1.0&q=80&w=1080" alt="Analytics Dashboard">
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Analytics Dashboard</h3>
+                        <p class="project-description">
+                            A comprehensive analytics dashboard with interactive charts, data visualization, and customizable reports.
+                        </p>
+                        <div class="project-tags">
+                            <span class="project-tag">React</span>
+                            <span class="project-tag">D3.js</span>
+                            <span class="project-tag">PostgreSQL</span>
+                            <span class="project-tag">Express</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link primary">🔗 Live Demo</a>
+                            <a href="#" class="project-link secondary">📁 Code</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Get In Touch</h2>
+                <p class="section-description">
+                    Have a project in mind or want to collaborate? Feel free to reach out.
+                    I'm always open to discussing new opportunities.
+                </p>
+            </div>
+
+            <div class="contact-grid">
+                <div class="contact-form-wrapper">
+                    <form class="contact-form">
+                        <div class="form-group">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" id="name" name="name" class="form-input" placeholder="Your name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" id="email" name="email" class="form-input" placeholder="your.email@example.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea id="message" name="message" rows="5" class="form-textarea" placeholder="Tell me about your project..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full">Send Message</button>
+                    </form>
+                </div>
+
+                <div class="contact-info-wrapper">
+                    <div class="contact-info-section">
+                        <h3 class="contact-info-title">Contact Information</h3>
+                        <div class="contact-info-items">
+                            <a href="mailto:john.smith@example.com" class="contact-info-item">
+                                <div class="contact-info-icon">✉️</div>
+                                <div class="contact-info-details">
+                                    <div class="contact-info-label">Email</div>
+                                    <div class="contact-info-value">rezamdtaufik442@hmail.com</div>
+                                </div>
+                            </a>
+                            <a href="tel:+15551234567" class="contact-info-item">
+                                <div class="contact-info-icon">📞</div>
+                                <div class="contact-info-details">
+                                    <div class="contact-info-label">Phone</div>
+                                    <div class="contact-info-value">9820092586</div>
+                                </div>
+                            </a>
+                            <div class="contact-info-item">
+                                <div class="contact-info-icon">📍</div>
+                                <div class="contact-info-details">
+                                    <div class="contact-info-label">Location</div>
+                                    <div class="contact-info-value">Koteshwor, Kathmandu</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="social-section">
+                        <h3 class="contact-info-title">Follow Me</h3>
+                        <div class="social-links">
+                            <a href="https://github.com" target="_blank" class="social-link" aria-label="GitHub">
+                                <span class="social-icon">🔗</span>
+                            </a>
+                            <a href="https://linkedin.com" target="_blank" class="social-link" aria-label="LinkedIn">
+                                <span class="social-icon">💼</span>
+                            </a>
+                            <a href="https://twitter.com" target="_blank" class="social-link" aria-label="Twitter">
+                                <span class="social-icon">🐦</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="footer">
+                <p>&copy; 2025 MD Taufik Reza. All rights reserved.</p>
+            </footer>
+        </div>
+    </section>
 </body>
 </html>
