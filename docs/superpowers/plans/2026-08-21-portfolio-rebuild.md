@@ -675,7 +675,7 @@ git add -A && git commit -m "feat: add reveal wrapper and grade badge"
 - Consumes: `profile` from Task 3
 - Produces: root layout exporting `metadata`; `<SiteNav>`, `<SiteFooter>`
 
-- [ ] **Step 1: Write `src/components/site-nav.tsx`**
+- [x] **Step 1: Write `src/components/site-nav.tsx`**
 
 Requirements — a reviewer should check each:
 - `<header>` with `sticky top-0 z-50`, `backdrop-blur`, `bg-background/80`, bottom border `border-border`
@@ -684,14 +684,14 @@ Requirements — a reviewer should check each:
 - Every link ≥44×44px tappable (`px-3 py-2` minimum)
 - Nav links hidden below `sm`; the initials and a single "Contact" link remain
 
-- [ ] **Step 2: Write `src/components/site-footer.tsx`**
+- [x] **Step 2: Write `src/components/site-footer.tsx` (text links, not icons — see commit)**
 
 - `<footer>` with top border, `font-mono text-sm text-muted-foreground`
 - Left: `© {new Date().getFullYear()} MD Taufik Reza`
 - Right: GitHub, LinkedIn, Email — `lucide-react` icons (`Github`, `Linkedin`, `Mail`), each with an `aria-label`. **No emoji.**
 - External links carry `target="_blank" rel="noopener noreferrer"`
 
-- [ ] **Step 3: Update `src/app/layout.tsx`**
+- [x] **Step 3: Update `src/app/layout.tsx`**
 
 ```tsx
 import type { Metadata } from 'next'
@@ -754,7 +754,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 }
 ```
 
-- [ ] **Step 4: Verify build, then commit**
+- [x] **Step 4: Verify build, then commit**
 
 ```bash
 npm run build && git add -A && git commit -m "feat: add layout shell with nav, footer and Person schema"
