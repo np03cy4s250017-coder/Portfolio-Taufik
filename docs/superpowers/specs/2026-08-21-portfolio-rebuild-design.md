@@ -28,17 +28,39 @@ against code that exists.**
 
 ## 2. Positioning
 
-Security-first engineer. Drishti leads; the web applications are supporting
-evidence that the author ships working software, not the headline.
+**An operator who builds tools.** Someone who keeps production systems running,
+and builds the tooling that audits them.
 
-This is a deliberate narrowing. A "full-stack developer" framing would compete
-against a much larger field on breadth the author does not yet have. A security
-framing competes on the one thing he demonstrably does have: a working OWASP
-scanner with an honest scoring model.
+The old site called its author "a dedicated cybersecurity student." He has not
+been one since 2024. The CV establishes:
 
-The strongest line in the entire corpus is from Drishti's own README —
-*"an honest statement of what a remote scanner can and cannot see."* That
-sentence is the site's thesis, and it earns the hero.
+- **BSc (Hons) Cybersecurity, First Class Honours** — University of
+  Wolverhampton, 2024
+- **Application Support L1, Net Core Nepal Pvt. Ltd** — since 13 March 2025.
+  24×7 production support, incident triage and escalation, root-cause analysis,
+  SQL diagnostics against MySQL/PostgreSQL, Nagios monitoring
+- **CCNA · CompTIA Network+ · ISC2 Certified in Cybersecurity**
+- **IP-CCTV and Fortinet FortiGate deployment across government and hospital
+  sites** — network segmentation in sensitive environments, firewall policy and
+  rule validation, VPN/NAT verification, internal/DMZ/external access
+  troubleshooting
+
+That last item is the rarest thing here and appeared nowhere on the old site.
+Segmenting hospital and government networks is not a credential most applicants
+can claim, and it cannot be acquired from a tutorial.
+
+The positioning is a synthesis rather than a narrowing. Most security candidates
+have certifications *or* shipped code; fewer have both plus live incident
+experience. The site's job is to make that combination legible in one screen.
+
+Drishti is the bridge between the two halves — a working OWASP scanner with an
+honest scoring model, built by someone who does the operational work it
+describes. Its README supplies the site's thesis:
+
+> *"an honest statement of what a remote scanner can and cannot see."*
+
+That sentence earns the hero, because restraint about a tool's limits is the
+credential that distinguishes an engineer from a résumé.
 
 ---
 
@@ -272,8 +294,8 @@ Written before the implementation they cover, per TDD.
 
 | Project | Presentation | Link |
 |---|---|---|
-| **Drishti** | Hero card + full case study: 7-channel scoring table, OWASP mapping, active-check ownership gate, the "what a scanner cannot see" thesis | Repo — **needs pushing** |
-| **Hyperlocal Kathmandu** | Tall card + case study: 4-app monorepo, PostGIS geospatial, Firebase realtime | Repo — **needs pushing** |
+| **Drishti** | Hero card + full case study: 7-channel scoring table, OWASP mapping, active-check ownership gate, the "what a scanner cannot see" thesis | [Drishti](https://github.com/np03cy4s250017-coder/Drishti) ✓ **pushed 2026-08-21** |
+| **CCTV + FortiGate deployment** | First-class card + case study. Professional engagement, no repo — see disclosure rules below | None (client work) |
 | **DevJobs** | Card | `Job-Finder-App` ✓ |
 | **FinTrack** | Card | `Expense-Tracker` ✓ |
 | **NovaShop** | Card | `Tech-Store` ✓ |
@@ -281,31 +303,139 @@ Written before the implementation they cover, per TDD.
 `Task-Manager` and `Tasks-Manager` are the same NovaShop e-commerce app under a
 misleading folder name. It appears **once**, named for what it is.
 
-### Skills — claimed only where code exists
+### Excluded: Hyperlocal Kathmandu
 
-Python · FastAPI · JavaScript · React · Tailwind · SQLite · PostgreSQL/PostGIS ·
-Docker · DNS/TLS · OWASP Top 10 · Git
+Cut after audit. Its README advertises a FastAPI + PostGIS backend and four
+Next.js apps. The folder contains **no `backend/` directory at all**, two app
+folders rather than four, and of those two only `apps/admin` has source (~7KB:
+a login page, a shops list, three lib files). `apps/customer` is config files
+with no `src/`.
 
-Removed from the old list: AWS, MongoDB, Node.js, TypeScript-as-expertise, SQL
-generally. TypeScript returns to the list only once this portfolio itself ships
-in it — at which point the claim is backed by the site making it.
+Featuring it would reproduce the exact failure this rebuild exists to correct,
+one level deeper: a recruiter clicking a card that promises a backend, finding
+an empty directory, and reasonably discounting every other claim on the site —
+including Drishti, which delivers everything it says.
+
+It is also **not pushed to GitHub**. A public repo whose README describes
+software that was never written is worse than no repo.
+
+### The CCTV/FortiGate card — disclosure rules
+
+This describes a professional engagement at government and hospital sites, so
+the card and case study state *capabilities exercised*, never client-identifying
+detail. Permitted: technology (FortiGate, IP-CCTV), the class of work (network
+segmentation, policy validation, VPN/NAT verification, DMZ troubleshooting), and
+the sensitivity of the environment in general terms. Excluded: site names,
+locations, topology specifics, IP ranges, rule contents, and anything that would
+assist someone attacking those networks.
+
+### Skills — claimed only where evidence exists
+
+**Security & infrastructure:** OWASP Top 10 · FortiGate firewall policy ·
+network segmentation · DNS/TLS · VPN/NAT · TCP/IP · Nagios monitoring ·
+incident response & RCA
+
+**Engineering:** Python · FastAPI · JavaScript · React · Tailwind · SQL
+(MySQL/PostgreSQL) · SQLite · Docker · Git · Linux/Windows server administration
+
+**Certifications:** CCNA · CompTIA Network+ · ISC2 Certified in Cybersecurity
+
+Removed from the old site's list: AWS, MongoDB, Node.js, and
+TypeScript-as-expertise — none appear in any code or on the CV. TypeScript joins
+the list only once this portfolio ships in it, at which point the site itself is
+the evidence for the claim.
 
 ---
 
-## 12. Open inputs
+## 12. Inputs
 
-1. **LinkedIn URL** — required for the contact section. Blocking only that link.
-2. **Resend API key** — needed for the contact form to function in production.
-   Site builds and deploys without it; the form returns a configured-error state.
-3. **Drishti + Hyperlocal repos** — must be pushed for their Code links to
-   resolve. Case-study pages work regardless; the links are additive.
-4. **Résumé PDF** — optional; a download button is wired if one is supplied.
+**Resolved:**
 
-None of these block the build. Each degrades to a defined state.
+- GitHub — `https://github.com/np03cy4s250017-coder`
+- LinkedIn — `https://www.linkedin.com/in/md-taufik-reza-119240349`
+- Email — `rezamdtaufik442@gmail.com` (the old site's `@hmail.com` was a typo)
+
+- Résumé — `MD_Taufik_Reza_CV.pdf`, copied to `public/` and wired to a download
+  button. The `.docx` is not published.
+- Drishti repo — pushed 2026-08-21, public, 95 files, verified free of `.env`,
+  `drishti.db`, and `.venv`.
+
+**Outstanding, none blocking:**
+
+1. **Resend API key** — set as a Vercel environment variable, never committed.
+   The site builds and deploys without it; the form renders and returns a
+   configured-error state rather than failing at build time.
+
+### Secret hygiene — findings from the pre-push audit
+
+Recorded because the same mistakes recur:
+
+- Drishti's `.gitignore` covered `node_modules/` but not `.venv/`,
+  `__pycache__/`, or `*.db`. A naive `git add -A` staged the entire Python
+  virtualenv **and `backend/drishti.db`** — a live SQLite file holding user
+  accounts, password hashes, verified domain-ownership records, and scan history
+  for every domain audited. Ignore rules were extended before the first commit;
+  the database never entered git history.
+- Hyperlocal had **no `.gitignore` at all**. One was written covering `.env`,
+  `firebase-service-account.json`, virtualenvs and build output — even though
+  the repo is not being pushed, because the next `git init` there would
+  otherwise repeat the problem.
+- Both projects' `.env.example` files were checked and are clean. Drishti's is
+  genuinely good documentation and is worth keeping public.
+- The Resend API key was pasted into a chat transcript twice. It must be rotated
+  once more at deploy time and entered directly into Vercel, scoped to
+  **sending access only** — never full access, which can mint further keys.
+
+### Project screenshots
+
+Cards and case studies need real visuals — the old site's use of Unsplash stock
+photography for imaginary projects is precisely the failure being corrected.
+
+Screenshots are captured from the running applications, not sourced externally.
+The three vanilla-JS apps (DevJobs, FinTrack, NovaShop) open directly from their
+`index.html`. Drishti and Hyperlocal need their dev servers up; Drishti also
+ships a `DESIGN-PREVIEW.html` usable as a fallback.
+
+If a project cannot be captured, its card falls back to a typographic treatment —
+grade chip, stack tags, and title on the surface colour. No stock photography
+under any circumstance.
 
 ---
 
-## 13. Out of scope
+## 13. Deployment
+
+**Repository:** the existing `np03cy4s250017-coder/Portfolio-Taufik`. The Next.js
+site replaces the contents of `main`; Vercel builds from that branch.
+
+### The GitHub Pages problem
+
+The CV in circulation directs recruiters to
+`np03cy4s250017-coder.github.io/Portfolio-Taufik`, which is **live and returning
+200 today**. Replacing `main` with a Next.js app breaks that Pages build, and
+every CV already sent points at a dead link.
+
+**Resolution:** a `gh-pages` branch carrying a single static `index.html` — a
+`<meta http-equiv="refresh">` plus a `<link rel="canonical">` and a visible
+fallback anchor for anyone whose browser blocks the refresh. GitHub Pages is
+pointed at that branch. The old URL keeps resolving and forwards to the Vercel
+site, so CVs already in circulation stay correct.
+
+The redirect page carries no analytics, no scripts, and no dependencies. It
+exists to survive unattended.
+
+### Environment variables (set in Vercel, never committed)
+
+| Name | Purpose | Absent behaviour |
+|---|---|---|
+| `RESEND_API_KEY` | Contact form delivery | Form renders; submit returns a configured-error state |
+| `CONTACT_TO_EMAIL` | Destination inbox | Falls back to the public email in `profile.ts` |
+| `NEXT_PUBLIC_SITE_URL` | Canonical URL for metadata, OG tags, sitemap | Falls back to the Vercel deployment URL |
+
+`.env.example` documents all three with empty values. `.env.local` is gitignored.
+
+---
+
+## 14. Out of scope
 
 A blog, a CMS, i18n, analytics, dark/light toggle (the design is dark-committed),
 and any project not currently in `D:\My-Projects`.
