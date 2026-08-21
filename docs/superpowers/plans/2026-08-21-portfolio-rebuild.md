@@ -1154,7 +1154,7 @@ git add -A && git commit -m "feat: add contact API route with validation, honeyp
 - Consumes: `contactSchema`, `profile`
 - Produces: `<ContactForm />`, `<Contact />`
 
-- [ ] **Step 1: Write `src/components/contact-form.tsx`**
+- [x] **Step 1: Write `src/components/contact-form.tsx`**
 
 `'use client'`, `react-hook-form` with `zodResolver(contactSchema)`.
 
@@ -1168,14 +1168,14 @@ Requirements:
 - Inputs: `bg-background border border-border-interactive rounded px-3 h-11`, focus ring uses the accent outline from `globals.css`
 - Buttons `h-11`, `cursor-pointer`
 
-- [ ] **Step 2: Write `src/components/sections/contact.tsx`**
+- [x] **Step 2: Write `src/components/sections/contact.tsx`**
 
 - `<section id="contact">` with eyebrow `04 — Contact`
 - Two columns on `md`: form left, direct links right
 - Direct links: email (`mailto:`), GitHub, LinkedIn — `lucide-react` icons, `aria-label` on each
 - **No phone number.** Location renders as text only: "Kathmandu, Nepal"
 
-- [ ] **Step 3: Verify build, then commit**
+- [x] **Step 3: Verify build, then commit**
 
 ```bash
 npm run build && git add -A && git commit -m "feat: add accessible contact form"
