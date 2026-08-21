@@ -1309,27 +1309,27 @@ npm run build && git add -A && git commit -m "feat: add sitemap, robots and gene
 - Consumes: existing project card
 - Produces: `image: string | null` on `projectSchema`
 
-- [ ] **Step 1: Extend `projectSchema`**
+- [x] **Step 1: Extend `projectSchema`**
 
 Add `image: z.string().startsWith('/shots/').nullable().default(null)`.
 
-- [ ] **Step 2: Capture the three vanilla-JS apps**
+- [x] **Step 2: Capture the three vanilla-JS apps**
 
 Open each `index.html` from `D:\My-Projects\{Job_finder,Expense-Tracker,Task-Manager}` at 1440×900 and capture the viewport. Save to `public/shots/{devjobs,fintrack,novashop}.png`.
 
-- [ ] **Step 3: Capture Drishti**
+- [x] **Step 3: Capture Drishti**
 
 Prefer `D:\My-Projects\Drishti\DESIGN-PREVIEW.html`, which needs no server. Only if that is unusable, start the backend and frontend per its README.
 
-- [ ] **Step 4: Handle the engagement card**
+- [x] **Step 4: Handle the engagement card**
 
 `network-segmentation-deployment` keeps `image: null` — there is nothing photographable that would not disclose client infrastructure. Its card uses the typographic fallback.
 
-- [ ] **Step 5: Render in the card**
+- [x] **Step 5: Render in the card**
 
 `next/image` with static width/height so space is reserved and CLS stays at 0. When `image === null`, render the typographic fallback. **No stock photography under any circumstance.**
 
-- [ ] **Step 6: Verify build, then commit**
+- [x] **Step 6: Verify build, then commit**
 
 ```bash
 npm run build && git add -A && git commit -m "feat: add real project screenshots"

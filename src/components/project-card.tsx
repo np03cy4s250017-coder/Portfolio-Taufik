@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowUpRight, Lock } from 'lucide-react'
 import type { Project } from '@/lib/schemas'
@@ -21,6 +22,27 @@ export function ProjectCard({ project, className }: { project: Project; classNam
         className,
       )}
     >
+      {project.image !== null ? (
+        <div className="relative mb-5 aspect-[8/5] overflow-hidden rounded border border-border">
+          <Image
+            src={project.image}
+            alt={`Screenshot of ${project.name}`}
+            fill
+            sizes="(min-width: 768px) 50vw, 100vw"
+            className="object-cover object-top"
+          />
+        </div>
+      ) : (
+        // Typographic fallback. Nothing about this engagement is photographable
+        // without disclosing client infrastructure, and stock photography is
+        // the precise failure this rebuild exists to correct.
+        <div className="mb-5 flex aspect-[8/5] items-center justify-center rounded border border-dashed border-border bg-background p-6">
+          <p className="text-center font-mono text-xs leading-relaxed text-muted-foreground">
+            {project.stack.join(' · ')}
+          </p>
+        </div>
+      )}
+
       <div className="flex items-start justify-between gap-4">
         <h3 className="text-lg font-semibold tracking-tight">{project.name}</h3>
         <GradeBadge grade={project.grade} className="shrink-0" />

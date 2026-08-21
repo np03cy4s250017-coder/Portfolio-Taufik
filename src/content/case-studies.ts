@@ -20,7 +20,7 @@ export const caseStudies: Readonly<Record<string, CaseStudy>> = Object.freeze({
     problem:
       'Most domain scanners return a wall of findings and an unearned number. They rarely say which risks they are blind to, so a clean report reads as a clean site — even when the categories that matter most were never observable from outside.',
     approach:
-      'Seven passive channels each start at a maximum and lose points for what they find, every one mapped to the OWASP Top 10 category it actually covers. Where a category cannot be judged remotely, the tool records that it cannot rather than scoring it as a pass. Active checks against A01 are gated behind verified domain ownership, so the scanner never probes a host the operator has not proven they control.',
+      'Passive channels each start at a maximum and lose points for what they find, every one mapped to the OWASP Top 10 category it actually covers. Where a category cannot be judged remotely, the tool records that it cannot rather than scoring it as a pass. Active checks against A01 are gated behind verified domain ownership, so the scanner never probes a host the operator has not proven they control.',
     detail: [
       { label: 'CH1 SSL/TLS', value: '25 pts · A02 — certificate validity and expiry, protocol versions, chain' },
       { label: 'CH2 DNS', value: '25 pts · A07/A08 — SPF, DMARC, DNSSEC, MX' },

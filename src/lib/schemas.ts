@@ -14,6 +14,11 @@ export const projectSchema = z.object({
   repoUrl: z.string().url().startsWith('https://github.com/').nullable(),
   featured: z.boolean(),
   kind: z.enum(['software', 'engagement']),
+  /**
+   * Screenshot captured from the running application, never stock photography.
+   * null means the card falls back to a typographic treatment.
+   */
+  image: z.string().startsWith('/shots/').nullable().default(null),
 })
 
 export const skillGroupSchema = z.object({

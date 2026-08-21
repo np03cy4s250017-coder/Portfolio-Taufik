@@ -22,6 +22,7 @@ const raw: Project[] = [
     repoUrl: 'https://github.com/np03cy4s250017-coder/Drishti',
     featured: true,
     kind: 'software',
+    image: '/shots/drishti.png',
   },
   {
     slug: 'network-segmentation-deployment',
@@ -34,6 +35,7 @@ const raw: Project[] = [
     repoUrl: null,
     featured: true,
     kind: 'engagement',
+    image: null,
   },
   {
     slug: 'devjobs',
@@ -46,6 +48,7 @@ const raw: Project[] = [
     repoUrl: 'https://github.com/np03cy4s250017-coder/Job-Finder-App',
     featured: false,
     kind: 'software',
+    image: '/shots/devjobs.png',
   },
   {
     slug: 'fintrack',
@@ -58,6 +61,7 @@ const raw: Project[] = [
     repoUrl: 'https://github.com/np03cy4s250017-coder/Expense-Tracker',
     featured: false,
     kind: 'software',
+    image: '/shots/fintrack.png',
   },
   {
     slug: 'novashop',
@@ -69,6 +73,7 @@ const raw: Project[] = [
     repoUrl: 'https://github.com/np03cy4s250017-coder/Tech-Store',
     featured: false,
     kind: 'software',
+    image: '/shots/novashop.png',
   },
 ]
 
