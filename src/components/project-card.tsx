@@ -23,7 +23,9 @@ export function ProjectCard({ project, className }: { project: Project; classNam
       )}
     >
       {project.image !== null ? (
-        <div className="relative mb-5 aspect-[8/5] overflow-hidden rounded border border-border">
+        // Fixed height rather than an aspect ratio: featured cards span the full
+        // grid, where 8:5 would make the media ~780px tall and swamp the page.
+        <div className="relative mb-5 h-52 overflow-hidden rounded border border-border sm:h-64">
           <Image
             src={project.image}
             alt={`Screenshot of ${project.name}`}
@@ -34,12 +36,19 @@ export function ProjectCard({ project, className }: { project: Project; classNam
         </div>
       ) : (
         // Typographic fallback. Nothing about this engagement is photographable
-        // without disclosing client infrastructure, and stock photography is
-        // the precise failure this rebuild exists to correct.
-        <div className="mb-5 flex aspect-[8/5] items-center justify-center rounded border border-dashed border-border bg-background p-6">
-          <p className="text-center font-mono text-xs leading-relaxed text-muted-foreground">
-            {project.stack.join(' · ')}
-          </p>
+        // without disclosing client infrastructure, and stock photography is the
+        // precise failure this rebuild exists to correct. The zone row names the
+        // shape of the work without naming anything belonging to the client.
+        <div className="mb-5 flex h-52 items-center justify-center rounded border border-dashed border-border bg-background px-4 sm:h-64 sm:px-6">
+          <ul className="flex flex-wrap items-center justify-center gap-2 font-mono text-xs text-muted-foreground sm:gap-4 sm:text-sm">
+            {['INTERNAL', 'DMZ', 'EXTERNAL'].map((zone, i) => (
+              <li key={zone} className="flex items-center gap-2 sm:gap-4">
+                {/* The connector reads as a diagram on wide cards; below sm the row wraps and it would only add clutter. */}
+                {i > 0 && <span aria-hidden className="hidden h-px w-6 bg-border-interactive sm:block sm:w-10" />}
+                <span className="rounded border border-border px-2 py-1">{zone}</span>
+              </li>
+            ))}
+          </ul>
         </div>
       )}
 

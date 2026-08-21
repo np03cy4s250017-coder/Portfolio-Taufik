@@ -1342,11 +1342,11 @@ npm run build && git add -A && git commit -m "feat: add real project screenshots
 **Files:**
 - Create: `playwright.config.ts`, `e2e/portfolio.spec.ts`
 
-- [ ] **Step 1: Write `playwright.config.ts`**
+- [x] **Step 1: Write `playwright.config.ts`**
 
 `testDir: './e2e'`, `webServer: { command: 'npm run build && npm run start', url: 'http://localhost:3000', reuseExistingServer: !process.env.CI }`.
 
-- [ ] **Step 2: Write `e2e/portfolio.spec.ts`**
+- [x] **Step 2: Write `e2e/portfolio.spec.ts`**
 
 ```ts
 import { test, expect } from '@playwright/test'
@@ -1398,7 +1398,7 @@ test('contact form validates and submits', async ({ page }) => {
 })
 ```
 
-- [ ] **Step 3: Run everything**
+- [x] **Step 3: Run everything**
 
 ```bash
 npm run lint && npx tsc --noEmit && npm test && npm run build && npx playwright test
@@ -1406,11 +1406,11 @@ npm run lint && npx tsc --noEmit && npm test && npm run build && npx playwright 
 
 Expected: all pass. Fix failures before proceeding — do not report completion on a red suite.
 
-- [ ] **Step 4: Responsive and accessibility check**
+- [x] **Step 4: Responsive and accessibility check**
 
 Verify at 375 / 768 / 1024 / 1440: no horizontal scroll, tap targets ≥44px, focus visible on every interactive element via keyboard only. Confirm reveal animations are absent under `prefers-reduced-motion: reduce` and content is still visible.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add -A && git commit -m "test: add E2E coverage for content integrity and contact flow"

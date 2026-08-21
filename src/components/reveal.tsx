@@ -1,14 +1,18 @@
 'use client'
 
-import { useEffect, useRef, useState, type ReactNode } from 'react'
+import { useEffect, useRef, type ReactNode } from 'react'
 
 import { cn } from '@/lib/utils'
 
 /**
- * Adds data-reveal="shown" when the element scrolls into view. CSS in
+ * Sets data-reveal="shown" when the element scrolls into view. CSS in
  * globals.css does the animating, and only under prefers-reduced-motion:
  * no-preference — so a reduced-motion user gets final state with no JS
  * involvement, and a failed observer degrades to visible rather than blank.
+ *
+ * The attribute is written straight to the node rather than held in state.
+ * Revealing is a one-way DOM update with no bearing on what React renders,
+ * so routing it through setState would only buy a re-render per element.
  */
 export function Reveal({
   children,
@@ -21,19 +25,24 @@ export function Reveal({
   className?: string
 }) {
   const ref = useRef<HTMLDivElement>(null)
-  const [shown, setShown] = useState(false)
 
   useEffect(() => {
     const el = ref.current
-    if (!el || shown) return
+    if (!el) return
+
+    const show = () => {
+      el.dataset.reveal = 'shown'
+    }
+
     if (typeof IntersectionObserver === 'undefined') {
-      setShown(true)
+      show()
       return
     }
+
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries.some((e) => e.isIntersecting)) {
-          setShown(true)
+          show()
           observer.disconnect()
         }
       },
@@ -41,13 +50,13 @@ export function Reveal({
     )
     observer.observe(el)
     return () => observer.disconnect()
-  }, [shown])
+  }, [])
 
   return (
     <div
       ref={ref}
       className={cn(className)}
-      data-reveal={shown ? 'shown' : ''}
+      data-reveal=""
       style={{ '--reveal-index': index } as React.CSSProperties}
     >
       {children}

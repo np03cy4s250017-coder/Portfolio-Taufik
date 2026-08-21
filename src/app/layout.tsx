@@ -38,6 +38,17 @@ const jsonLd = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${inter.variable} ${mono.variable}`}>
+      <head>
+        {/*
+          Without JS the IntersectionObserver never runs, and globals.css hides
+          every [data-reveal] element under prefers-reduced-motion: no-preference.
+          That would leave the whole page below the hero permanently invisible.
+          This restores final state for no-JS readers.
+        */}
+        <noscript>
+          <style>{`[data-reveal]{opacity:1 !important;transform:none !important}`}</style>
+        </noscript>
+      </head>
       <body className="font-sans antialiased">
         <a
           href="#main"
