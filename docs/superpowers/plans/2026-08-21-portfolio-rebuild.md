@@ -877,7 +877,7 @@ npm run build && git add -A && git commit -m "feat: add skills and background se
 - Consumes: nothing
 - Produces: `createRateLimiter(opts: { limit: number; windowMs: number }): { check(key: string, now?: number): boolean }`
 
-- [ ] **Step 1: Write the failing test `src/lib/rate-limit.test.ts`**
+- [x] **Step 1: Write the failing test `src/lib/rate-limit.test.ts`**
 
 ```ts
 import { describe, it, expect } from 'vitest'
@@ -914,12 +914,12 @@ describe('createRateLimiter', () => {
 })
 ```
 
-- [ ] **Step 2: Run to verify it fails**
+- [x] **Step 2: Run to verify it fails**
 
 Run: `npm test`
 Expected: FAIL — cannot resolve `./rate-limit`.
 
-- [ ] **Step 3: Write `src/lib/rate-limit.ts`**
+- [x] **Step 3: Write `src/lib/rate-limit.ts`**
 
 ```ts
 type Limiter = { check(key: string, now?: number): boolean }
@@ -949,12 +949,12 @@ export function createRateLimiter({ limit, windowMs }: { limit: number; windowMs
 }
 ```
 
-- [ ] **Step 4: Run to verify it passes**
+- [x] **Step 4: Run to verify it passes**
 
 Run: `npm test`
 Expected: PASS, 22 tests total.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add -A && git commit -m "feat: add sliding-window rate limiter with tests"
