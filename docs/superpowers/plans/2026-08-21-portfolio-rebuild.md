@@ -772,7 +772,7 @@ npm run build && git add -A && git commit -m "feat: add layout shell with nav, f
 - Consumes: `profile`, `Reveal`
 - Produces: `<Hero />`
 
-- [ ] **Step 1: Write `src/components/sections/hero.tsx`**
+- [x] **Step 1: Write `src/components/sections/hero.tsx`**
 
 Requirements:
 - `<section id="top">`, `min-h-[85vh]`, vertically centred, `max-w-5xl` container
@@ -786,9 +786,9 @@ Requirements:
 
 **Do not** state or imply student status anywhere.
 
-- [ ] **Step 2: Update `src/app/page.tsx` to render `<Hero />`**
+- [x] **Step 2: Update `src/app/page.tsx` to render `<Hero />`**
 
-- [ ] **Step 3: Verify build, then commit**
+- [x] **Step 3: Verify build, then commit**
 
 ```bash
 npm run build && git add -A && git commit -m "feat: add hero section"
@@ -806,7 +806,7 @@ npm run build && git add -A && git commit -m "feat: add hero section"
 - Consumes: `projects`, `GradeBadge`, `Reveal`
 - Produces: `<ProjectCard project: Project; featured?: boolean>`, `<Work />`
 
-- [ ] **Step 1: Write `src/components/project-card.tsx`**
+- [x] **Step 1: Write `src/components/project-card.tsx`**
 
 Requirements:
 - `<article>`, `bg-surface`, `border border-border`, `rounded-lg`, `p-6`
@@ -820,14 +820,14 @@ Requirements:
   - `featured` → "Read case study" → `/projects/{slug}`
 - **Never render an `href="#"`.** If a link has no destination, omit the element. This was the old site's defining flaw.
 
-- [ ] **Step 2: Write `src/components/sections/work.tsx`**
+- [x] **Step 2: Write `src/components/sections/work.tsx`**
 
 - `<section id="work">` with a `font-mono text-accent` eyebrow reading `01 — Work`
 - Featured projects (Drishti, the deployment) span `md:col-span-2` in a `md:grid-cols-2` grid
 - The three smaller apps fill a `md:grid-cols-3` row
 - Each card wrapped in `<Reveal index={i}>` for the 60ms stagger
 
-- [ ] **Step 3: Verify build, then commit**
+- [x] **Step 3: Verify build, then commit**
 
 ```bash
 npm run build && git add -A && git commit -m "feat: add work grid and project cards"
@@ -845,13 +845,13 @@ npm run build && git add -A && git commit -m "feat: add work grid and project ca
 - Consumes: `profile`, `skillGroups`, `Reveal`
 - Produces: `<About />`, `<Skills />`
 
-- [ ] **Step 1: Write `src/components/sections/skills.tsx`**
+- [x] **Step 1: Write `src/components/sections/skills.tsx`**
 
 - `<section>` with eyebrow `02 — Capabilities`
 - One column per `skillGroup`: `label` as a `font-mono text-accent text-sm` heading, `items` as a list of `font-mono text-sm text-muted-foreground` chips
 - Group grid: `grid gap-8 md:grid-cols-3`
 
-- [ ] **Step 2: Write `src/components/sections/about.tsx`**
+- [x] **Step 2: Write `src/components/sections/about.tsx`**
 
 - `<section id="about">` with eyebrow `03 — Background`
 - Experience: for each `profile.experience` entry, role + org as `<h3>`, `start – end` in `font-mono text-xs text-muted-foreground`, `points` as a `<ul>`
@@ -859,7 +859,7 @@ npm run build && git add -A && git commit -m "feat: add work grid and project ca
 - Certifications: `profile.certifications` as bordered `font-mono text-xs` chips
 - Use `<time>` elements where a date is expressed
 
-- [ ] **Step 3: Verify build, then commit**
+- [x] **Step 3: Verify build, then commit**
 
 ```bash
 npm run build && git add -A && git commit -m "feat: add skills and background sections"

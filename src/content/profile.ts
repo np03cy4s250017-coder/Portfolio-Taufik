@@ -16,6 +16,8 @@ export const profile = Object.freeze({
       role: 'Application Support — L1',
       org: 'Net Core Nepal Pvt. Ltd',
       start: 'March 2025',
+      /** Machine-readable form for the <time> element rendering `start`. */
+      startISO: '2025-03',
       end: 'Present',
       points: Object.freeze([
         '24×7 support for web-based production environments, handling user and system incidents end to end.',
