@@ -25,8 +25,14 @@ export const contactSchema = z.object({
   name: z.string().trim().min(1, 'Your name is required').max(100),
   email: z.string().trim().email('Enter a valid email address'),
   message: z.string().trim().min(10, 'Message must be at least 10 characters').max(5000),
-  /** Honeypot. Real users never see this field, so a non-empty value means a bot. */
-  website: z.string().max(0).optional().or(z.literal('')),
+  /**
+   * Honeypot. Real users never see this field, so a non-empty value means a bot.
+   *
+   * Deliberately permissive: rejecting a filled honeypot here would return 400
+   * and tell the bot it was caught. The route accepts the request, answers 200
+   * and discards it, which is the whole point of the trap.
+   */
+  website: z.string().optional(),
 })
 
 export type Project = z.infer<typeof projectSchema>

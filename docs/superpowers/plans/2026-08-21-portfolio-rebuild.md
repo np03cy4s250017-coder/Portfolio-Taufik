@@ -972,7 +972,7 @@ git add -A && git commit -m "feat: add sliding-window rate limiter with tests"
 - Consumes: `contactSchema` (Task 2), `createRateLimiter` (Task 9), `profile` (Task 3)
 - Produces: `POST(req: Request): Promise<Response>`
 
-- [ ] **Step 1: Write the failing test `src/app/api/contact/route.test.ts`**
+- [x] **Step 1: Write the failing test `src/app/api/contact/route.test.ts`**
 
 ```ts
 import { describe, it, expect, vi, beforeEach } from 'vitest'
@@ -1049,12 +1049,12 @@ describe('POST /api/contact', () => {
 })
 ```
 
-- [ ] **Step 2: Run to verify it fails**
+- [x] **Step 2: Run to verify it fails**
 
 Run: `npm test`
 Expected: FAIL — cannot resolve `./route`.
 
-- [ ] **Step 3: Write `src/app/api/contact/route.ts`**
+- [x] **Step 3: Write `src/app/api/contact/route.ts`**
 
 ```ts
 import { Resend } from 'resend'
@@ -1131,12 +1131,12 @@ export async function POST(req: Request): Promise<Response> {
 }
 ```
 
-- [ ] **Step 4: Run to verify it passes**
+- [x] **Step 4: Run to verify it passes**
 
 Run: `npm test`
 Expected: PASS, 29 tests total.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add -A && git commit -m "feat: add contact API route with validation, honeypot and rate limiting"

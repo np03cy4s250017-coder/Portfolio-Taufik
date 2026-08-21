@@ -59,6 +59,13 @@ describe('contactSchema', () => {
     expect(() => contactSchema.parse({ ...valid, message: 'x'.repeat(5001) })).toThrow()
   })
 
+  it('accepts a filled honeypot so the route can discard it silently', () => {
+    // A 400 here would leak detection to the bot; see the field's comment.
+    expect(contactSchema.parse({ ...valid, website: 'http://spam.test' }).website).toBe(
+      'http://spam.test',
+    )
+  })
+
   it('trims surrounding whitespace from the name', () => {
     expect(contactSchema.parse({ ...valid, name: '  Ada  ' }).name).toBe('Ada')
   })
