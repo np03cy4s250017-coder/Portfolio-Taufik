@@ -186,7 +186,7 @@ git add -A && git commit -m "feat: scaffold Next.js app with design tokens and f
 - Consumes: nothing
 - Produces: `projectSchema`, `skillGroupSchema`, `contactSchema`; types `Project`, `SkillGroup`, `ContactInput`
 
-- [ ] **Step 1: Write `vitest.config.ts`**
+- [x] **Step 1: Write `vitest.config.mts`**
 
 ```ts
 import { defineConfig } from 'vitest/config'
@@ -200,7 +200,7 @@ export default defineConfig({
 
 Add to `package.json` scripts: `"test": "vitest run"`.
 
-- [ ] **Step 2: Write the failing test `src/lib/schemas.test.ts`**
+- [x] **Step 2: Write the failing test `src/lib/schemas.test.ts`**
 
 ```ts
 import { describe, it, expect } from 'vitest'
@@ -270,12 +270,12 @@ describe('contactSchema', () => {
 })
 ```
 
-- [ ] **Step 3: Run to verify it fails**
+- [x] **Step 3: Run to verify it fails**
 
 Run: `npm test`
 Expected: FAIL — cannot resolve `./schemas`.
 
-- [ ] **Step 4: Write `src/lib/schemas.ts`**
+- [x] **Step 4: Write `src/lib/schemas.ts`**
 
 ```ts
 import { z } from 'zod'
@@ -314,12 +314,12 @@ export type SkillGroup = z.infer<typeof skillGroupSchema>
 export type ContactInput = z.infer<typeof contactSchema>
 ```
 
-- [ ] **Step 5: Run to verify it passes**
+- [x] **Step 5: Run to verify it passes**
 
 Run: `npm test`
 Expected: PASS, 11 tests.
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 
 ```bash
 git add -A && git commit -m "feat: add Zod content and contact schemas with tests"
