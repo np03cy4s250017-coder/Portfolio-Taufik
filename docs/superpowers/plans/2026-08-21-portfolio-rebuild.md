@@ -1254,7 +1254,7 @@ npm run build && git add -A && git commit -m "feat: add case study pages for Dri
 - Consumes: `projects`, `profile`
 - Produces: three route handlers
 
-- [ ] **Step 1: Write `src/app/sitemap.ts`**
+- [x] **Step 1: Write `src/app/sitemap.ts`**
 
 ```ts
 import type { MetadataRoute } from 'next'
@@ -1272,7 +1272,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 }
 ```
 
-- [ ] **Step 2: Write `src/app/robots.ts`**
+- [x] **Step 2: Write `src/app/robots.ts`**
 
 ```ts
 import type { MetadataRoute } from 'next'
@@ -1287,11 +1287,11 @@ export default function robots(): MetadataRoute.Robots {
 }
 ```
 
-- [ ] **Step 3: Write `src/app/opengraph-image.tsx`**
+- [x] **Step 3: Write `src/app/opengraph-image.tsx`**
 
 `ImageResponse` at 1200×630, background `#0F172A`, name in `#F8FAFC` at ~64px, role and location in `#22C55E` monospace beneath. No external fonts or images — the edge runtime cannot fetch them under CSP.
 
-- [ ] **Step 4: Verify build, then commit**
+- [x] **Step 4: Verify build, then commit**
 
 ```bash
 npm run build && git add -A && git commit -m "feat: add sitemap, robots and generated OG image"
