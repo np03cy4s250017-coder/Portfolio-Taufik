@@ -68,7 +68,7 @@ credential that distinguishes an engineer from a résumé.
 
 | Layer | Choice | Reason |
 |---|---|---|
-| Framework | Next.js 15, App Router | First-class on Vercel; prerenders to static by default |
+| Framework | Next.js 16, App Router | First-class on Vercel; prerenders to static by default. Scaffolded on 16.3.1 — 16 was stable by build time; Turbopack is its default bundler, so the spec's `--no-turbopack` flag no longer exists. |
 | Language | TypeScript, `strict` | Content is typed data; typos become build failures |
 | Styling | Tailwind v4 | CSS-first config, no `tailwind.config.js` runtime cost |
 | Components | shadcn/ui (Radix) | Accessible primitives, copied in — no runtime dependency |

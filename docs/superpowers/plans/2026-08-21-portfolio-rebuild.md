@@ -4,15 +4,15 @@
 
 **Goal:** Replace a two-file static site advertising invented projects with a Next.js portfolio where every claim is backed by code, a certification, or a documented engagement.
 
-**Architecture:** Next.js 15 App Router, prerendered to static except one serverless route. Content lives in typed, Zod-validated data modules that the grid, case-study routes, sitemap and JSON-LD all derive from — adding a project is one object, not a copied `<div>`. Presentational components are dumb; everything testable lives in `src/lib`.
+**Architecture:** Next.js 16 App Router, prerendered to static except one serverless route. Content lives in typed, Zod-validated data modules that the grid, case-study routes, sitemap and JSON-LD all derive from — adding a project is one object, not a copied `<div>`. Presentational components are dumb; everything testable lives in `src/lib`.
 
-**Tech Stack:** Next.js 15, TypeScript (strict), Tailwind v4, shadcn/ui (Radix), lucide-react, react-hook-form, Zod, Resend, Vitest, Playwright.
+**Tech Stack:** Next.js 16, TypeScript (strict), Tailwind v4, shadcn/ui (Radix), lucide-react, react-hook-form, Zod, Resend, Vitest, Playwright.
 
 **Spec:** `docs/superpowers/specs/2026-08-21-portfolio-rebuild-design.md`
 
 ## Global Constraints
 
-- **Node 20+.** Next.js 15 requires it. Verify with `node -v` before Task 1.
+- **Node 20+.** Next.js 16 requires it. Verify with `node -v` before Task 1.
 - **Never commit secrets.** `.env.local` is gitignored; `.env.example` carries empty values. `RESEND_API_KEY`, `CONTACT_TO_EMAIL`, `NEXT_PUBLIC_SITE_URL` are set in Vercel only.
 - **No emoji as icons.** Use `lucide-react`. The old site used 🔗 💼 🐦 as social icons; that is the anti-pattern being corrected.
 - **No stock photography.** Screenshots come from the real applications or the card falls back to a typographic treatment.
@@ -59,7 +59,7 @@
 - Consumes: nothing
 - Produces: `cn(...inputs: ClassValue[]): string` from `src/lib/utils.ts`; CSS variables listed in Global Constraints; `--font-sans` and `--font-mono` bound to Inter and JetBrains Mono
 
-- [ ] **Step 1: Scaffold**
+- [x] **Step 1: Scaffold**
 
 Run in `D:\My-Projects\portfolio` (the directory already exists and holds `docs/` plus a git repo — do not re-init):
 
@@ -74,7 +74,7 @@ npm i zod react-hook-form @hookform/resolvers resend lucide-react clsx tailwind-
 npm i -D vitest @vitejs/plugin-react vite-tsconfig-paths @playwright/test
 ```
 
-- [ ] **Step 2: Write `src/lib/utils.ts`**
+- [x] **Step 2: Write `src/lib/utils.ts`**
 
 ```ts
 import { clsx, type ClassValue } from 'clsx'
@@ -85,7 +85,7 @@ export function cn(...inputs: ClassValue[]): string {
 }
 ```
 
-- [ ] **Step 3: Write `src/app/globals.css`**
+- [x] **Step 3: Write `src/app/globals.css`**
 
 ```css
 @import "tailwindcss";
@@ -134,7 +134,7 @@ export function cn(...inputs: ClassValue[]): string {
 }
 ```
 
-- [ ] **Step 4: Wire fonts in `src/app/layout.tsx`**
+- [x] **Step 4: Wire fonts in `src/app/layout.tsx`**
 
 ```tsx
 import { Inter, JetBrains_Mono } from 'next/font/google'
@@ -152,7 +152,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 }
 ```
 
-- [ ] **Step 5: Write `.env.example`**
+- [x] **Step 5: Write `.env.example`**
 
 ```
 # Resend API key — SENDING ACCESS ONLY. Set in Vercel, never commit a real value.
@@ -163,12 +163,12 @@ CONTACT_TO_EMAIL=
 NEXT_PUBLIC_SITE_URL=
 ```
 
-- [ ] **Step 6: Verify build**
+- [x] **Step 6: Verify build**
 
 Run: `npm run build`
 Expected: succeeds, no type errors.
 
-- [ ] **Step 7: Commit**
+- [x] **Step 7: Commit**
 
 ```bash
 git add -A && git commit -m "feat: scaffold Next.js app with design tokens and fonts"
