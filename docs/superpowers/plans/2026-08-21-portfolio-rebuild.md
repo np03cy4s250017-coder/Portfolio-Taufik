@@ -569,7 +569,7 @@ git add -A && git commit -m "feat: add validated content modules for profile, pr
 - Consumes: `cn` from Task 1, `GRADES` from Task 2
 - Produces: `<Reveal index?: number>` wrapper; `<GradeBadge grade: Grade>`
 
-- [ ] **Step 1: Write `src/components/reveal.tsx`**
+- [x] **Step 1: Write `src/components/reveal.tsx`**
 
 ```tsx
 'use client'
@@ -618,7 +618,7 @@ export function Reveal({ children, index = 0 }: { children: ReactNode; index?: n
 }
 ```
 
-- [ ] **Step 2: Write `src/components/grade-badge.tsx`**
+- [x] **Step 2: Write `src/components/grade-badge.tsx`**
 
 The `title` and `sr-only` text are required — they are what stop the badge reading as an external rating.
 
@@ -652,12 +652,12 @@ export function GradeBadge({ grade, className }: { grade: Project['grade']; clas
 }
 ```
 
-- [ ] **Step 3: Verify build**
+- [x] **Step 3: Verify build**
 
 Run: `npm run build`
 Expected: succeeds.
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 ```bash
 git add -A && git commit -m "feat: add reveal wrapper and grade badge"
