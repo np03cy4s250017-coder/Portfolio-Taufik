@@ -94,3 +94,11 @@ test('content stays visible with JavaScript disabled', async ({ browser }) => {
 
   await context.close()
 })
+
+test('the CV download is served but excluded from search indexes', async ({ request }) => {
+  // The PDF contains a phone number the site strips from every page, so it
+  // must stay downloadable for recruiters while staying out of the index.
+  const res = await request.get('/MD_Taufik_Reza_CV.pdf')
+  expect(res.status()).toBe(200)
+  expect(res.headers()['x-robots-tag']).toContain('noindex')
+})
