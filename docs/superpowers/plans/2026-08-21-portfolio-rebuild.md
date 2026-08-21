@@ -337,7 +337,7 @@ git add -A && git commit -m "feat: add Zod content and contact schemas with test
 - Consumes: `projectSchema`, `skillGroupSchema` from Task 2
 - Produces: `profile` object; `projects: readonly Project[]`; `featuredProjects`, `getProjectBySlug(slug: string): Project | undefined`; `skillGroups: readonly SkillGroup[]`
 
-- [ ] **Step 1: Write the failing test `src/content/projects.test.ts`**
+- [x] **Step 1: Write the failing test `src/content/projects.test.ts`**
 
 ```ts
 import { describe, it, expect } from 'vitest'
@@ -382,12 +382,12 @@ describe('projects content', () => {
 })
 ```
 
-- [ ] **Step 2: Run to verify it fails**
+- [x] **Step 2: Run to verify it fails**
 
 Run: `npm test`
 Expected: FAIL — cannot resolve `./projects`.
 
-- [ ] **Step 3: Write `src/content/projects.ts`**
+- [x] **Step 3: Write `src/content/projects.ts`**
 
 ```ts
 import { projectSchema, type Project } from '@/lib/schemas'
@@ -468,7 +468,7 @@ export function getProjectBySlug(slug: string): Project | undefined {
 }
 ```
 
-- [ ] **Step 4: Write `src/content/profile.ts`**
+- [x] **Step 4: Write `src/content/profile.ts`**
 
 All values below are transcribed from the CV. Do not embellish.
 
@@ -515,7 +515,7 @@ export const profile = Object.freeze({
 })
 ```
 
-- [ ] **Step 5: Write `src/content/skills.ts`**
+- [x] **Step 5: Write `src/content/skills.ts`**
 
 ```ts
 import { skillGroupSchema, type SkillGroup } from '@/lib/schemas'
@@ -539,12 +539,12 @@ const raw: SkillGroup[] = [
 export const skillGroups: readonly SkillGroup[] = Object.freeze(raw.map((g) => skillGroupSchema.parse(g)))
 ```
 
-- [ ] **Step 6: Run to verify it passes**
+- [x] **Step 6: Run to verify it passes**
 
 Run: `npm test`
 Expected: PASS, 18 tests.
 
-- [ ] **Step 7: Copy the résumé into `public/`**
+- [x] **Step 7: Copy the résumé into `public/`**
 
 ```bash
 cp "D:/My-Projects/MD_Taufik_Reza_CV.pdf" public/MD_Taufik_Reza_CV.pdf
@@ -552,7 +552,7 @@ cp "D:/My-Projects/MD_Taufik_Reza_CV.pdf" public/MD_Taufik_Reza_CV.pdf
 
 Do **not** copy the `.docx`.
 
-- [ ] **Step 8: Commit**
+- [x] **Step 8: Commit**
 
 ```bash
 git add -A && git commit -m "feat: add validated content modules for profile, projects and skills"

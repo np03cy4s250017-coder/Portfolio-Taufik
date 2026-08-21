@@ -336,12 +336,16 @@ network segmentation · DNS/TLS · VPN/NAT · TCP/IP · Nagios monitoring ·
 incident response & RCA
 
 **Engineering:** Python · FastAPI · JavaScript · React · Tailwind · SQL
-(MySQL/PostgreSQL) · SQLite · Docker · Git · Linux/Windows server administration
+(MySQL/PostgreSQL) · SQLite · Git · Linux/Windows server administration
 
 **Certifications:** CCNA · CompTIA Network+ · ISC2 Certified in Cybersecurity
 
 Removed from the old site's list: AWS, MongoDB, Node.js, and
-TypeScript-as-expertise — none appear in any code or on the CV. TypeScript joins
+TypeScript-as-expertise — none appear in any code or on the CV. **Docker was
+removed from this spec's own list at implementation time** for the same reason:
+no Dockerfile or compose file exists in any project and the CV never mentions
+it. An earlier draft of this section had reproduced the very failure §1
+describes. TypeScript joins
 the list only once this portfolio ships in it, at which point the site itself is
 the evidence for the claim.
 
