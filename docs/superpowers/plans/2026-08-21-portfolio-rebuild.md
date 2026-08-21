@@ -1192,7 +1192,7 @@ npm run build && git add -A && git commit -m "feat: add accessible contact form"
 - Consumes: `projects`, `getProjectBySlug`
 - Produces: `generateStaticParams`, `generateMetadata`, default page component
 
-- [ ] **Step 1: Write `src/content/case-studies.ts`**
+- [x] **Step 1: Write `src/content/case-studies.ts`**
 
 Keyed by slug, only for `featured` projects. Each has `{ problem, approach, detail }` where `detail` is a list of `{ label, value }` rows.
 
@@ -1207,7 +1207,7 @@ Keyed by slug, only for `featured` projects. Each has `{ problem, approach, deta
 - Approach: segmentation between internal, DMZ and external zones; FortiGate policy and rule validation; VPN and NAT verification; post-deployment fault isolation
 - **No client names, sites, addresses, topology, IP ranges or rule contents.** A reviewer must confirm this before merge.
 
-- [ ] **Step 2: Write `src/app/projects/[slug]/page.tsx`**
+- [x] **Step 2: Write `src/app/projects/[slug]/page.tsx`**
 
 ```tsx
 import { notFound } from 'next/navigation'
@@ -1237,7 +1237,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
 }
 ```
 
-- [ ] **Step 3: Verify build, then commit**
+- [x] **Step 3: Verify build, then commit**
 
 ```bash
 npm run build && git add -A && git commit -m "feat: add case study pages for Drishti and the deployment engagement"
