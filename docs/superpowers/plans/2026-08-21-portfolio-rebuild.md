@@ -4,15 +4,15 @@
 
 **Goal:** Replace a two-file static site advertising invented projects with a Next.js portfolio where every claim is backed by code, a certification, or a documented engagement.
 
-**Architecture:** Next.js 15 App Router, prerendered to static except one serverless route. Content lives in typed, Zod-validated data modules that the grid, case-study routes, sitemap and JSON-LD all derive from — adding a project is one object, not a copied `<div>`. Presentational components are dumb; everything testable lives in `src/lib`.
+**Architecture:** Next.js 16 App Router, prerendered to static except one serverless route. Content lives in typed, Zod-validated data modules that the grid, case-study routes, sitemap and JSON-LD all derive from — adding a project is one object, not a copied `<div>`. Presentational components are dumb; everything testable lives in `src/lib`.
 
-**Tech Stack:** Next.js 15, TypeScript (strict), Tailwind v4, shadcn/ui (Radix), lucide-react, react-hook-form, Zod, Resend, Vitest, Playwright.
+**Tech Stack:** Next.js 16, TypeScript (strict), Tailwind v4, shadcn/ui (Radix), lucide-react, react-hook-form, Zod, Resend, Vitest, Playwright.
 
 **Spec:** `docs/superpowers/specs/2026-08-21-portfolio-rebuild-design.md`
 
 ## Global Constraints
 
-- **Node 20+.** Next.js 15 requires it. Verify with `node -v` before Task 1.
+- **Node 20+.** Next.js 16 requires it. Verify with `node -v` before Task 1.
 - **Never commit secrets.** `.env.local` is gitignored; `.env.example` carries empty values. `RESEND_API_KEY`, `CONTACT_TO_EMAIL`, `NEXT_PUBLIC_SITE_URL` are set in Vercel only.
 - **No emoji as icons.** Use `lucide-react`. The old site used 🔗 💼 🐦 as social icons; that is the anti-pattern being corrected.
 - **No stock photography.** Screenshots come from the real applications or the card falls back to a typographic treatment.
@@ -59,7 +59,7 @@
 - Consumes: nothing
 - Produces: `cn(...inputs: ClassValue[]): string` from `src/lib/utils.ts`; CSS variables listed in Global Constraints; `--font-sans` and `--font-mono` bound to Inter and JetBrains Mono
 
-- [ ] **Step 1: Scaffold**
+- [x] **Step 1: Scaffold**
 
 Run in `D:\My-Projects\portfolio` (the directory already exists and holds `docs/` plus a git repo — do not re-init):
 
@@ -74,7 +74,7 @@ npm i zod react-hook-form @hookform/resolvers resend lucide-react clsx tailwind-
 npm i -D vitest @vitejs/plugin-react vite-tsconfig-paths @playwright/test
 ```
 
-- [ ] **Step 2: Write `src/lib/utils.ts`**
+- [x] **Step 2: Write `src/lib/utils.ts`**
 
 ```ts
 import { clsx, type ClassValue } from 'clsx'
@@ -85,7 +85,7 @@ export function cn(...inputs: ClassValue[]): string {
 }
 ```
 
-- [ ] **Step 3: Write `src/app/globals.css`**
+- [x] **Step 3: Write `src/app/globals.css`**
 
 ```css
 @import "tailwindcss";
@@ -134,7 +134,7 @@ export function cn(...inputs: ClassValue[]): string {
 }
 ```
 
-- [ ] **Step 4: Wire fonts in `src/app/layout.tsx`**
+- [x] **Step 4: Wire fonts in `src/app/layout.tsx`**
 
 ```tsx
 import { Inter, JetBrains_Mono } from 'next/font/google'
@@ -152,7 +152,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 }
 ```
 
-- [ ] **Step 5: Write `.env.example`**
+- [x] **Step 5: Write `.env.example`**
 
 ```
 # Resend API key — SENDING ACCESS ONLY. Set in Vercel, never commit a real value.
@@ -163,12 +163,12 @@ CONTACT_TO_EMAIL=
 NEXT_PUBLIC_SITE_URL=
 ```
 
-- [ ] **Step 6: Verify build**
+- [x] **Step 6: Verify build**
 
 Run: `npm run build`
 Expected: succeeds, no type errors.
 
-- [ ] **Step 7: Commit**
+- [x] **Step 7: Commit**
 
 ```bash
 git add -A && git commit -m "feat: scaffold Next.js app with design tokens and fonts"
@@ -186,7 +186,7 @@ git add -A && git commit -m "feat: scaffold Next.js app with design tokens and f
 - Consumes: nothing
 - Produces: `projectSchema`, `skillGroupSchema`, `contactSchema`; types `Project`, `SkillGroup`, `ContactInput`
 
-- [ ] **Step 1: Write `vitest.config.ts`**
+- [x] **Step 1: Write `vitest.config.mts`**
 
 ```ts
 import { defineConfig } from 'vitest/config'
@@ -200,7 +200,7 @@ export default defineConfig({
 
 Add to `package.json` scripts: `"test": "vitest run"`.
 
-- [ ] **Step 2: Write the failing test `src/lib/schemas.test.ts`**
+- [x] **Step 2: Write the failing test `src/lib/schemas.test.ts`**
 
 ```ts
 import { describe, it, expect } from 'vitest'
@@ -270,12 +270,12 @@ describe('contactSchema', () => {
 })
 ```
 
-- [ ] **Step 3: Run to verify it fails**
+- [x] **Step 3: Run to verify it fails**
 
 Run: `npm test`
 Expected: FAIL — cannot resolve `./schemas`.
 
-- [ ] **Step 4: Write `src/lib/schemas.ts`**
+- [x] **Step 4: Write `src/lib/schemas.ts`**
 
 ```ts
 import { z } from 'zod'
@@ -314,12 +314,12 @@ export type SkillGroup = z.infer<typeof skillGroupSchema>
 export type ContactInput = z.infer<typeof contactSchema>
 ```
 
-- [ ] **Step 5: Run to verify it passes**
+- [x] **Step 5: Run to verify it passes**
 
 Run: `npm test`
 Expected: PASS, 11 tests.
 
-- [ ] **Step 6: Commit**
+- [x] **Step 6: Commit**
 
 ```bash
 git add -A && git commit -m "feat: add Zod content and contact schemas with tests"
@@ -337,7 +337,7 @@ git add -A && git commit -m "feat: add Zod content and contact schemas with test
 - Consumes: `projectSchema`, `skillGroupSchema` from Task 2
 - Produces: `profile` object; `projects: readonly Project[]`; `featuredProjects`, `getProjectBySlug(slug: string): Project | undefined`; `skillGroups: readonly SkillGroup[]`
 
-- [ ] **Step 1: Write the failing test `src/content/projects.test.ts`**
+- [x] **Step 1: Write the failing test `src/content/projects.test.ts`**
 
 ```ts
 import { describe, it, expect } from 'vitest'
@@ -382,12 +382,12 @@ describe('projects content', () => {
 })
 ```
 
-- [ ] **Step 2: Run to verify it fails**
+- [x] **Step 2: Run to verify it fails**
 
 Run: `npm test`
 Expected: FAIL — cannot resolve `./projects`.
 
-- [ ] **Step 3: Write `src/content/projects.ts`**
+- [x] **Step 3: Write `src/content/projects.ts`**
 
 ```ts
 import { projectSchema, type Project } from '@/lib/schemas'
@@ -468,7 +468,7 @@ export function getProjectBySlug(slug: string): Project | undefined {
 }
 ```
 
-- [ ] **Step 4: Write `src/content/profile.ts`**
+- [x] **Step 4: Write `src/content/profile.ts`**
 
 All values below are transcribed from the CV. Do not embellish.
 
@@ -515,7 +515,7 @@ export const profile = Object.freeze({
 })
 ```
 
-- [ ] **Step 5: Write `src/content/skills.ts`**
+- [x] **Step 5: Write `src/content/skills.ts`**
 
 ```ts
 import { skillGroupSchema, type SkillGroup } from '@/lib/schemas'
@@ -539,12 +539,12 @@ const raw: SkillGroup[] = [
 export const skillGroups: readonly SkillGroup[] = Object.freeze(raw.map((g) => skillGroupSchema.parse(g)))
 ```
 
-- [ ] **Step 6: Run to verify it passes**
+- [x] **Step 6: Run to verify it passes**
 
 Run: `npm test`
 Expected: PASS, 18 tests.
 
-- [ ] **Step 7: Copy the résumé into `public/`**
+- [x] **Step 7: Copy the résumé into `public/`**
 
 ```bash
 cp "D:/My-Projects/MD_Taufik_Reza_CV.pdf" public/MD_Taufik_Reza_CV.pdf
@@ -552,7 +552,7 @@ cp "D:/My-Projects/MD_Taufik_Reza_CV.pdf" public/MD_Taufik_Reza_CV.pdf
 
 Do **not** copy the `.docx`.
 
-- [ ] **Step 8: Commit**
+- [x] **Step 8: Commit**
 
 ```bash
 git add -A && git commit -m "feat: add validated content modules for profile, projects and skills"
@@ -569,7 +569,7 @@ git add -A && git commit -m "feat: add validated content modules for profile, pr
 - Consumes: `cn` from Task 1, `GRADES` from Task 2
 - Produces: `<Reveal index?: number>` wrapper; `<GradeBadge grade: Grade>`
 
-- [ ] **Step 1: Write `src/components/reveal.tsx`**
+- [x] **Step 1: Write `src/components/reveal.tsx`**
 
 ```tsx
 'use client'
@@ -618,7 +618,7 @@ export function Reveal({ children, index = 0 }: { children: ReactNode; index?: n
 }
 ```
 
-- [ ] **Step 2: Write `src/components/grade-badge.tsx`**
+- [x] **Step 2: Write `src/components/grade-badge.tsx`**
 
 The `title` and `sr-only` text are required — they are what stop the badge reading as an external rating.
 
@@ -652,12 +652,12 @@ export function GradeBadge({ grade, className }: { grade: Project['grade']; clas
 }
 ```
 
-- [ ] **Step 3: Verify build**
+- [x] **Step 3: Verify build**
 
 Run: `npm run build`
 Expected: succeeds.
 
-- [ ] **Step 4: Commit**
+- [x] **Step 4: Commit**
 
 ```bash
 git add -A && git commit -m "feat: add reveal wrapper and grade badge"
@@ -675,7 +675,7 @@ git add -A && git commit -m "feat: add reveal wrapper and grade badge"
 - Consumes: `profile` from Task 3
 - Produces: root layout exporting `metadata`; `<SiteNav>`, `<SiteFooter>`
 
-- [ ] **Step 1: Write `src/components/site-nav.tsx`**
+- [x] **Step 1: Write `src/components/site-nav.tsx`**
 
 Requirements — a reviewer should check each:
 - `<header>` with `sticky top-0 z-50`, `backdrop-blur`, `bg-background/80`, bottom border `border-border`
@@ -684,14 +684,14 @@ Requirements — a reviewer should check each:
 - Every link ≥44×44px tappable (`px-3 py-2` minimum)
 - Nav links hidden below `sm`; the initials and a single "Contact" link remain
 
-- [ ] **Step 2: Write `src/components/site-footer.tsx`**
+- [x] **Step 2: Write `src/components/site-footer.tsx` (text links, not icons — see commit)**
 
 - `<footer>` with top border, `font-mono text-sm text-muted-foreground`
 - Left: `© {new Date().getFullYear()} MD Taufik Reza`
 - Right: GitHub, LinkedIn, Email — `lucide-react` icons (`Github`, `Linkedin`, `Mail`), each with an `aria-label`. **No emoji.**
 - External links carry `target="_blank" rel="noopener noreferrer"`
 
-- [ ] **Step 3: Update `src/app/layout.tsx`**
+- [x] **Step 3: Update `src/app/layout.tsx`**
 
 ```tsx
 import type { Metadata } from 'next'
@@ -754,7 +754,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 }
 ```
 
-- [ ] **Step 4: Verify build, then commit**
+- [x] **Step 4: Verify build, then commit**
 
 ```bash
 npm run build && git add -A && git commit -m "feat: add layout shell with nav, footer and Person schema"
@@ -772,7 +772,7 @@ npm run build && git add -A && git commit -m "feat: add layout shell with nav, f
 - Consumes: `profile`, `Reveal`
 - Produces: `<Hero />`
 
-- [ ] **Step 1: Write `src/components/sections/hero.tsx`**
+- [x] **Step 1: Write `src/components/sections/hero.tsx`**
 
 Requirements:
 - `<section id="top">`, `min-h-[85vh]`, vertically centred, `max-w-5xl` container
@@ -786,9 +786,9 @@ Requirements:
 
 **Do not** state or imply student status anywhere.
 
-- [ ] **Step 2: Update `src/app/page.tsx` to render `<Hero />`**
+- [x] **Step 2: Update `src/app/page.tsx` to render `<Hero />`**
 
-- [ ] **Step 3: Verify build, then commit**
+- [x] **Step 3: Verify build, then commit**
 
 ```bash
 npm run build && git add -A && git commit -m "feat: add hero section"
@@ -806,7 +806,7 @@ npm run build && git add -A && git commit -m "feat: add hero section"
 - Consumes: `projects`, `GradeBadge`, `Reveal`
 - Produces: `<ProjectCard project: Project; featured?: boolean>`, `<Work />`
 
-- [ ] **Step 1: Write `src/components/project-card.tsx`**
+- [x] **Step 1: Write `src/components/project-card.tsx`**
 
 Requirements:
 - `<article>`, `bg-surface`, `border border-border`, `rounded-lg`, `p-6`
@@ -820,14 +820,14 @@ Requirements:
   - `featured` → "Read case study" → `/projects/{slug}`
 - **Never render an `href="#"`.** If a link has no destination, omit the element. This was the old site's defining flaw.
 
-- [ ] **Step 2: Write `src/components/sections/work.tsx`**
+- [x] **Step 2: Write `src/components/sections/work.tsx`**
 
 - `<section id="work">` with a `font-mono text-accent` eyebrow reading `01 — Work`
 - Featured projects (Drishti, the deployment) span `md:col-span-2` in a `md:grid-cols-2` grid
 - The three smaller apps fill a `md:grid-cols-3` row
 - Each card wrapped in `<Reveal index={i}>` for the 60ms stagger
 
-- [ ] **Step 3: Verify build, then commit**
+- [x] **Step 3: Verify build, then commit**
 
 ```bash
 npm run build && git add -A && git commit -m "feat: add work grid and project cards"
@@ -845,13 +845,13 @@ npm run build && git add -A && git commit -m "feat: add work grid and project ca
 - Consumes: `profile`, `skillGroups`, `Reveal`
 - Produces: `<About />`, `<Skills />`
 
-- [ ] **Step 1: Write `src/components/sections/skills.tsx`**
+- [x] **Step 1: Write `src/components/sections/skills.tsx`**
 
 - `<section>` with eyebrow `02 — Capabilities`
 - One column per `skillGroup`: `label` as a `font-mono text-accent text-sm` heading, `items` as a list of `font-mono text-sm text-muted-foreground` chips
 - Group grid: `grid gap-8 md:grid-cols-3`
 
-- [ ] **Step 2: Write `src/components/sections/about.tsx`**
+- [x] **Step 2: Write `src/components/sections/about.tsx`**
 
 - `<section id="about">` with eyebrow `03 — Background`
 - Experience: for each `profile.experience` entry, role + org as `<h3>`, `start – end` in `font-mono text-xs text-muted-foreground`, `points` as a `<ul>`
@@ -859,7 +859,7 @@ npm run build && git add -A && git commit -m "feat: add work grid and project ca
 - Certifications: `profile.certifications` as bordered `font-mono text-xs` chips
 - Use `<time>` elements where a date is expressed
 
-- [ ] **Step 3: Verify build, then commit**
+- [x] **Step 3: Verify build, then commit**
 
 ```bash
 npm run build && git add -A && git commit -m "feat: add skills and background sections"
@@ -877,7 +877,7 @@ npm run build && git add -A && git commit -m "feat: add skills and background se
 - Consumes: nothing
 - Produces: `createRateLimiter(opts: { limit: number; windowMs: number }): { check(key: string, now?: number): boolean }`
 
-- [ ] **Step 1: Write the failing test `src/lib/rate-limit.test.ts`**
+- [x] **Step 1: Write the failing test `src/lib/rate-limit.test.ts`**
 
 ```ts
 import { describe, it, expect } from 'vitest'
@@ -914,12 +914,12 @@ describe('createRateLimiter', () => {
 })
 ```
 
-- [ ] **Step 2: Run to verify it fails**
+- [x] **Step 2: Run to verify it fails**
 
 Run: `npm test`
 Expected: FAIL — cannot resolve `./rate-limit`.
 
-- [ ] **Step 3: Write `src/lib/rate-limit.ts`**
+- [x] **Step 3: Write `src/lib/rate-limit.ts`**
 
 ```ts
 type Limiter = { check(key: string, now?: number): boolean }
@@ -949,12 +949,12 @@ export function createRateLimiter({ limit, windowMs }: { limit: number; windowMs
 }
 ```
 
-- [ ] **Step 4: Run to verify it passes**
+- [x] **Step 4: Run to verify it passes**
 
 Run: `npm test`
 Expected: PASS, 22 tests total.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add -A && git commit -m "feat: add sliding-window rate limiter with tests"
@@ -972,7 +972,7 @@ git add -A && git commit -m "feat: add sliding-window rate limiter with tests"
 - Consumes: `contactSchema` (Task 2), `createRateLimiter` (Task 9), `profile` (Task 3)
 - Produces: `POST(req: Request): Promise<Response>`
 
-- [ ] **Step 1: Write the failing test `src/app/api/contact/route.test.ts`**
+- [x] **Step 1: Write the failing test `src/app/api/contact/route.test.ts`**
 
 ```ts
 import { describe, it, expect, vi, beforeEach } from 'vitest'
@@ -1049,12 +1049,12 @@ describe('POST /api/contact', () => {
 })
 ```
 
-- [ ] **Step 2: Run to verify it fails**
+- [x] **Step 2: Run to verify it fails**
 
 Run: `npm test`
 Expected: FAIL — cannot resolve `./route`.
 
-- [ ] **Step 3: Write `src/app/api/contact/route.ts`**
+- [x] **Step 3: Write `src/app/api/contact/route.ts`**
 
 ```ts
 import { Resend } from 'resend'
@@ -1131,12 +1131,12 @@ export async function POST(req: Request): Promise<Response> {
 }
 ```
 
-- [ ] **Step 4: Run to verify it passes**
+- [x] **Step 4: Run to verify it passes**
 
 Run: `npm test`
 Expected: PASS, 29 tests total.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add -A && git commit -m "feat: add contact API route with validation, honeypot and rate limiting"
@@ -1154,7 +1154,7 @@ git add -A && git commit -m "feat: add contact API route with validation, honeyp
 - Consumes: `contactSchema`, `profile`
 - Produces: `<ContactForm />`, `<Contact />`
 
-- [ ] **Step 1: Write `src/components/contact-form.tsx`**
+- [x] **Step 1: Write `src/components/contact-form.tsx`**
 
 `'use client'`, `react-hook-form` with `zodResolver(contactSchema)`.
 
@@ -1168,14 +1168,14 @@ Requirements:
 - Inputs: `bg-background border border-border-interactive rounded px-3 h-11`, focus ring uses the accent outline from `globals.css`
 - Buttons `h-11`, `cursor-pointer`
 
-- [ ] **Step 2: Write `src/components/sections/contact.tsx`**
+- [x] **Step 2: Write `src/components/sections/contact.tsx`**
 
 - `<section id="contact">` with eyebrow `04 — Contact`
 - Two columns on `md`: form left, direct links right
 - Direct links: email (`mailto:`), GitHub, LinkedIn — `lucide-react` icons, `aria-label` on each
 - **No phone number.** Location renders as text only: "Kathmandu, Nepal"
 
-- [ ] **Step 3: Verify build, then commit**
+- [x] **Step 3: Verify build, then commit**
 
 ```bash
 npm run build && git add -A && git commit -m "feat: add accessible contact form"
@@ -1192,7 +1192,7 @@ npm run build && git add -A && git commit -m "feat: add accessible contact form"
 - Consumes: `projects`, `getProjectBySlug`
 - Produces: `generateStaticParams`, `generateMetadata`, default page component
 
-- [ ] **Step 1: Write `src/content/case-studies.ts`**
+- [x] **Step 1: Write `src/content/case-studies.ts`**
 
 Keyed by slug, only for `featured` projects. Each has `{ problem, approach, detail }` where `detail` is a list of `{ label, value }` rows.
 
@@ -1207,7 +1207,7 @@ Keyed by slug, only for `featured` projects. Each has `{ problem, approach, deta
 - Approach: segmentation between internal, DMZ and external zones; FortiGate policy and rule validation; VPN and NAT verification; post-deployment fault isolation
 - **No client names, sites, addresses, topology, IP ranges or rule contents.** A reviewer must confirm this before merge.
 
-- [ ] **Step 2: Write `src/app/projects/[slug]/page.tsx`**
+- [x] **Step 2: Write `src/app/projects/[slug]/page.tsx`**
 
 ```tsx
 import { notFound } from 'next/navigation'
@@ -1237,7 +1237,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
 }
 ```
 
-- [ ] **Step 3: Verify build, then commit**
+- [x] **Step 3: Verify build, then commit**
 
 ```bash
 npm run build && git add -A && git commit -m "feat: add case study pages for Drishti and the deployment engagement"
@@ -1254,7 +1254,7 @@ npm run build && git add -A && git commit -m "feat: add case study pages for Dri
 - Consumes: `projects`, `profile`
 - Produces: three route handlers
 
-- [ ] **Step 1: Write `src/app/sitemap.ts`**
+- [x] **Step 1: Write `src/app/sitemap.ts`**
 
 ```ts
 import type { MetadataRoute } from 'next'
@@ -1272,7 +1272,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 }
 ```
 
-- [ ] **Step 2: Write `src/app/robots.ts`**
+- [x] **Step 2: Write `src/app/robots.ts`**
 
 ```ts
 import type { MetadataRoute } from 'next'
@@ -1287,11 +1287,11 @@ export default function robots(): MetadataRoute.Robots {
 }
 ```
 
-- [ ] **Step 3: Write `src/app/opengraph-image.tsx`**
+- [x] **Step 3: Write `src/app/opengraph-image.tsx`**
 
 `ImageResponse` at 1200×630, background `#0F172A`, name in `#F8FAFC` at ~64px, role and location in `#22C55E` monospace beneath. No external fonts or images — the edge runtime cannot fetch them under CSP.
 
-- [ ] **Step 4: Verify build, then commit**
+- [x] **Step 4: Verify build, then commit**
 
 ```bash
 npm run build && git add -A && git commit -m "feat: add sitemap, robots and generated OG image"
@@ -1309,27 +1309,27 @@ npm run build && git add -A && git commit -m "feat: add sitemap, robots and gene
 - Consumes: existing project card
 - Produces: `image: string | null` on `projectSchema`
 
-- [ ] **Step 1: Extend `projectSchema`**
+- [x] **Step 1: Extend `projectSchema`**
 
 Add `image: z.string().startsWith('/shots/').nullable().default(null)`.
 
-- [ ] **Step 2: Capture the three vanilla-JS apps**
+- [x] **Step 2: Capture the three vanilla-JS apps**
 
 Open each `index.html` from `D:\My-Projects\{Job_finder,Expense-Tracker,Task-Manager}` at 1440×900 and capture the viewport. Save to `public/shots/{devjobs,fintrack,novashop}.png`.
 
-- [ ] **Step 3: Capture Drishti**
+- [x] **Step 3: Capture Drishti**
 
 Prefer `D:\My-Projects\Drishti\DESIGN-PREVIEW.html`, which needs no server. Only if that is unusable, start the backend and frontend per its README.
 
-- [ ] **Step 4: Handle the engagement card**
+- [x] **Step 4: Handle the engagement card**
 
 `network-segmentation-deployment` keeps `image: null` — there is nothing photographable that would not disclose client infrastructure. Its card uses the typographic fallback.
 
-- [ ] **Step 5: Render in the card**
+- [x] **Step 5: Render in the card**
 
 `next/image` with static width/height so space is reserved and CLS stays at 0. When `image === null`, render the typographic fallback. **No stock photography under any circumstance.**
 
-- [ ] **Step 6: Verify build, then commit**
+- [x] **Step 6: Verify build, then commit**
 
 ```bash
 npm run build && git add -A && git commit -m "feat: add real project screenshots"
@@ -1342,11 +1342,11 @@ npm run build && git add -A && git commit -m "feat: add real project screenshots
 **Files:**
 - Create: `playwright.config.ts`, `e2e/portfolio.spec.ts`
 
-- [ ] **Step 1: Write `playwright.config.ts`**
+- [x] **Step 1: Write `playwright.config.ts`**
 
 `testDir: './e2e'`, `webServer: { command: 'npm run build && npm run start', url: 'http://localhost:3000', reuseExistingServer: !process.env.CI }`.
 
-- [ ] **Step 2: Write `e2e/portfolio.spec.ts`**
+- [x] **Step 2: Write `e2e/portfolio.spec.ts`**
 
 ```ts
 import { test, expect } from '@playwright/test'
@@ -1398,7 +1398,7 @@ test('contact form validates and submits', async ({ page }) => {
 })
 ```
 
-- [ ] **Step 3: Run everything**
+- [x] **Step 3: Run everything**
 
 ```bash
 npm run lint && npx tsc --noEmit && npm test && npm run build && npx playwright test
@@ -1406,11 +1406,11 @@ npm run lint && npx tsc --noEmit && npm test && npm run build && npx playwright 
 
 Expected: all pass. Fix failures before proceeding — do not report completion on a red suite.
 
-- [ ] **Step 4: Responsive and accessibility check**
+- [x] **Step 4: Responsive and accessibility check**
 
 Verify at 375 / 768 / 1024 / 1440: no horizontal scroll, tap targets ≥44px, focus visible on every interactive element via keyboard only. Confirm reveal animations are absent under `prefers-reduced-motion: reduce` and content is still visible.
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit**
 
 ```bash
 git add -A && git commit -m "test: add E2E coverage for content integrity and contact flow"

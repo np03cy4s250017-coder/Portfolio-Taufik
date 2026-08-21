@@ -68,7 +68,7 @@ credential that distinguishes an engineer from a résumé.
 
 | Layer | Choice | Reason |
 |---|---|---|
-| Framework | Next.js 15, App Router | First-class on Vercel; prerenders to static by default |
+| Framework | Next.js 16, App Router | First-class on Vercel; prerenders to static by default. Scaffolded on 16.3.1 — 16 was stable by build time; Turbopack is its default bundler, so the spec's `--no-turbopack` flag no longer exists. |
 | Language | TypeScript, `strict` | Content is typed data; typos become build failures |
 | Styling | Tailwind v4 | CSS-first config, no `tailwind.config.js` runtime cost |
 | Components | shadcn/ui (Radix) | Accessible primitives, copied in — no runtime dependency |
@@ -256,6 +256,19 @@ form (react-hook-form + zod, inline errors)
 current site is dropped — a number on an indexed page is scraped within days and
 is a SIM-swap vector, and recruiters email first regardless.
 
+**The résumé is the exception, handled deliberately.** `MD_Taufik_Reza_CV.pdf`
+still carries `+977-9820092586`, and publishing it as a download would have put
+the number back on an indexable URL, defeating the rule above. The PDF is served
+with `X-Robots-Tag: noindex, noarchive` (see `next.config.ts`) so it stays
+available to a recruiter who clicks Download but out of search results.
+
+A `robots.txt` `Disallow` was considered and rejected: a crawler must fetch the
+file to read the directive, so disallowing the fetch would suppress the very
+instruction that removes it, leaving the URL indexable on inbound links alone.
+An E2E test asserts the header is present on the served file. This narrows
+exposure rather than eliminating it — anyone who visits the page can still
+download the PDF, which is the point of publishing it.
+
 ---
 
 ## 9. Testing
@@ -336,12 +349,16 @@ network segmentation · DNS/TLS · VPN/NAT · TCP/IP · Nagios monitoring ·
 incident response & RCA
 
 **Engineering:** Python · FastAPI · JavaScript · React · Tailwind · SQL
-(MySQL/PostgreSQL) · SQLite · Docker · Git · Linux/Windows server administration
+(MySQL/PostgreSQL) · SQLite · Git · Linux/Windows server administration
 
 **Certifications:** CCNA · CompTIA Network+ · ISC2 Certified in Cybersecurity
 
 Removed from the old site's list: AWS, MongoDB, Node.js, and
-TypeScript-as-expertise — none appear in any code or on the CV. TypeScript joins
+TypeScript-as-expertise — none appear in any code or on the CV. **Docker was
+removed from this spec's own list at implementation time** for the same reason:
+no Dockerfile or compose file exists in any project and the CV never mentions
+it. An earlier draft of this section had reproduced the very failure §1
+describes. TypeScript joins
 the list only once this portfolio ships in it, at which point the site itself is
 the evidence for the claim.
 
