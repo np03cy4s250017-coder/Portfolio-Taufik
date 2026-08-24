@@ -26,6 +26,23 @@ describe('projects content', () => {
     const e = projects.find((p) => p.kind === 'engagement')
     expect(e).toBeDefined()
     expect(e?.repoUrl).toBeNull()
+    expect(e?.demoUrl).toBeNull()
+  })
+
+  it('links the statically hostable apps to their GitHub Pages demo', () => {
+    for (const slug of ['fintrack', 'novashop']) {
+      expect(getProjectBySlug(slug)?.demoUrl).toMatch(
+        /^https:\/\/np03cy4s250017-coder\.github\.io\//,
+      )
+    }
+  })
+
+  // DevJobs is server-rendered with database-backed sessions, so no static host
+  // can serve it. Claiming a demo would mean linking something that is not this
+  // application — the exact failure this site was rebuilt to correct — so the
+  // absence is asserted rather than left to drift back in.
+  it('claims no demo for the app that cannot be statically hosted', () => {
+    expect(getProjectBySlug('devjobs')?.demoUrl).toBeNull()
   })
 
   it('getProjectBySlug returns undefined for an unknown slug', () => {

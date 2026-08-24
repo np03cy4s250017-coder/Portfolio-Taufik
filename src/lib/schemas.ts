@@ -12,6 +12,12 @@ export const projectSchema = z.object({
   stack: z.array(z.string().min(1)).min(1),
   /** null for professional engagements with no publishable repo. */
   repoUrl: z.string().url().startsWith('https://github.com/').nullable(),
+  demoUrl: z
+    .string()
+    .url()
+    .startsWith('https://np03cy4s250017-coder.github.io/')
+    .nullable()
+    .default(null),
   featured: z.boolean(),
   kind: z.enum(['software', 'engagement']),
   /**

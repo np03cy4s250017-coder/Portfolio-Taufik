@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { ArrowUpRight, Lock } from 'lucide-react'
 import type { Project } from '@/lib/schemas'
 import { GradeBadge } from '@/components/grade-badge'
+import { SegmentationDiagram } from '@/components/segmentation-diagram'
 import { cn } from '@/lib/utils'
 
 const footerLink =
@@ -34,23 +35,16 @@ export function ProjectCard({ project, className }: { project: Project; classNam
             className="object-cover object-top"
           />
         </div>
-      ) : (
-        // Typographic fallback. Nothing about this engagement is photographable
-        // without disclosing client infrastructure, and stock photography is the
-        // precise failure this rebuild exists to correct. The zone row names the
-        // shape of the work without naming anything belonging to the client.
-        <div className="mb-5 flex h-52 items-center justify-center rounded border border-dashed border-border bg-background px-4 sm:h-64 sm:px-6">
-          <ul className="flex flex-wrap items-center justify-center gap-2 font-mono text-xs text-muted-foreground sm:gap-4 sm:text-sm">
-            {['INTERNAL', 'DMZ', 'EXTERNAL'].map((zone, i) => (
-              <li key={zone} className="flex items-center gap-2 sm:gap-4">
-                {/* The connector reads as a diagram on wide cards; below sm the row wraps and it would only add clutter. */}
-                {i > 0 && <span aria-hidden className="hidden h-px w-6 bg-border-interactive sm:block sm:w-10" />}
-                <span className="rounded border border-border px-2 py-1">{zone}</span>
-              </li>
-            ))}
-          </ul>
+      ) : project.kind === 'engagement' ? (
+        // Nothing about this engagement is photographable without disclosing
+        // client infrastructure, and stock photography is the precise failure
+        // this rebuild exists to correct. A drawn diagram of the pattern is the
+        // honest third option: it shows what the work actually was without
+        // showing anything that belongs to a client.
+        <div className="mb-5 rounded border border-dashed border-border bg-background p-4 sm:p-6">
+          <SegmentationDiagram />
         </div>
-      )}
+      ) : null}
 
       <div className="flex items-start justify-between gap-4">
         <h3 className="text-lg font-semibold tracking-tight">{project.name}</h3>
@@ -71,6 +65,13 @@ export function ProjectCard({ project, className }: { project: Project; classNam
       </ul>
 
       <div className="mt-auto flex flex-wrap items-center gap-x-5 pt-4">
+        {project.demoUrl !== null && (
+          <a href={project.demoUrl} target="_blank" rel="noopener noreferrer" className={footerLink}>
+            Live demo
+            <ArrowUpRight aria-hidden className="size-3.5" />
+          </a>
+        )}
+
         {project.repoUrl !== null && (
           <a href={project.repoUrl} target="_blank" rel="noopener noreferrer" className={footerLink}>
             Code

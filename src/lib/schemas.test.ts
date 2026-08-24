@@ -9,6 +9,7 @@ const validProject = {
   year: 2026,
   stack: ['FastAPI', 'React'],
   repoUrl: 'https://github.com/np03cy4s250017-coder/Drishti',
+  demoUrl: null,
   featured: true,
   kind: 'software',
 }
@@ -33,6 +34,18 @@ describe('projectSchema', () => {
 
   it('rejects a non-github repoUrl', () => {
     expect(() => projectSchema.parse({ ...validProject, repoUrl: 'https://evil.test/x' })).toThrow()
+  })
+
+  it('accepts only demos hosted under the portfolio GitHub Pages account', () => {
+    const demoUrl = 'https://np03cy4s250017-coder.github.io/Expense-Tracker/'
+    expect(projectSchema.parse({ ...validProject, demoUrl }).demoUrl).toBe(demoUrl)
+    expect(() => projectSchema.parse({ ...validProject, demoUrl: 'https://example.com/demo' })).toThrow()
+  })
+
+  it('defaults a missing demoUrl to null', () => {
+    const withoutDemo: Record<string, unknown> = { ...validProject }
+    delete withoutDemo.demoUrl
+    expect(projectSchema.parse(withoutDemo).demoUrl).toBeNull()
   })
 
   it('requires at least one stack entry', () => {

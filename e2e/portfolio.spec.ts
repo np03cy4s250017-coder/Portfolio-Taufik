@@ -26,6 +26,24 @@ test('no phone number is exposed', async ({ page }) => {
   expect(html).not.toContain('tel:')
 })
 
+// The engagement covered government and hospital sites. The segmentation
+// diagram is the one place on this site that draws that work, so it is also the
+// one place a well-meaning edit could leak something — an address range added
+// "for realism", a site name used as a label. This fails the build if it does.
+test('the segmentation diagram discloses no client infrastructure', async ({ page }) => {
+  await page.goto('/')
+  const html = await page.content()
+
+  // Addressing, in the private ranges a real deployment would actually use.
+  expect(html).not.toMatch(/\b(?:10|172|192)\.\d{1,3}\.\d{1,3}\.\d{1,3}\b/)
+  // Interface names and VLAN numbering.
+  expect(html).not.toMatch(/\b(?:port[1-9]|wan[12]|vlan\s?\d+)\b/i)
+
+  // The diagram must still be there. A passing check on a deleted figure would
+  // be worthless.
+  await expect(page.getByRole('img', { name: /segmentation pattern/i })).toBeVisible()
+})
+
 test('case study is reachable and returns home', async ({ page }) => {
   await page.goto('/')
   await page.getByRole('link', { name: /case study/i }).first().click()
