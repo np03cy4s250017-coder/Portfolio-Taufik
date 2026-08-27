@@ -8,7 +8,7 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' })
 const mono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-jetbrains', display: 'swap' })
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://portfolio-taufik.vercel.app'
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://taufik.milanhalo.me'
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

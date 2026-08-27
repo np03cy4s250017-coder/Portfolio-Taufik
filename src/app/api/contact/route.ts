@@ -50,7 +50,11 @@ export async function POST(req: Request): Promise<Response> {
   try {
     const resend = new Resend(apiKey)
     const { error } = await resend.emails.send({
-      from: 'Portfolio <onboarding@resend.dev>',
+      // Sent from the verified domain, never Resend's shared onboarding@resend.dev:
+      // that shared sender silently delivers ONLY to the Resend account owner, so a
+      // regression to it would still log a success while dropping every enquiry
+      // addressed anywhere else. Pinned by a test for exactly that reason.
+      from: 'Portfolio <portfolio@milanhalo.me>',
       to: process.env.CONTACT_TO_EMAIL ?? profile.email,
       replyTo: email,
       subject: `Portfolio enquiry from ${name}`,

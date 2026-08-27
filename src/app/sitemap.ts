@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next'
 import { projects } from '@/content/projects'
 
-const base = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://portfolio-taufik.vercel.app'
+const base = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://taufik.milanhalo.me'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [

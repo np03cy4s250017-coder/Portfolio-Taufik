@@ -62,6 +62,16 @@ describe('POST /api/contact', () => {
     expect(send).not.toHaveBeenCalled()
   })
 
+  // onboarding@resend.dev delivers only to the Resend account owner. Reverting to
+  // it would pass every other test here — send() is called, the route returns 200 —
+  // while real enquiries vanish. This is the only check that would notice.
+  it('sends from the verified domain, not the shared onboarding sender', async () => {
+    await post(valid)
+    const { from } = send.mock.calls[0][0]
+    expect(from).toContain('@milanhalo.me')
+    expect(from).not.toContain('resend.dev')
+  })
+
   it('returns 400 for a non-JSON body', async () => {
     const { POST } = await import('./route')
     const res = await POST(new Request('http://localhost/api/contact', {
